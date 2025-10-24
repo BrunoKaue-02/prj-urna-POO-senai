@@ -1,0 +1,37 @@
+[
+    {
+        "nome": "Bruno",
+        "idade": "19",
+        "cpf": "jaf",
+        "partido": "BCT",
+        "numero": "69"
+    },
+    {
+        "nome": "bruno",
+        "idade": "19",
+        "cpf": "jas",
+        "partido": "BCT",
+        "numero": "68"
+    },
+    {
+        "nome": "s",
+        "idade": "s",
+        "cpf": "s",
+        "partido": "s",
+        "numero": "s"
+    },
+    {
+        "nome": "Julia",
+        "idade": "19",
+        "cpf": "as",
+        "partido": "PCD",
+        "numero": "34"
+    },
+    {
+        "nome": "Thiago",
+        "idade": "39",
+        "cpf": "202",
+        "partido": "30-",
+        "numero": "23"
+    }
+]
