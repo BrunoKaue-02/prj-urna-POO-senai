@@ -1,5 +1,6 @@
 from controller.controller_candidato import cadastrar_candidato, apagar_candidato, listar_candidatos
 from controller.controller_eleitor import cadastrar_eleitor, listar_eleitores, apagar_eleitor
+from controller.controller_partido import cadastrar_partido
 
 
 def menu():
