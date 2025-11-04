@@ -22,17 +22,17 @@ def salvar_db(candidato, arquivo):
     print(f" Candidato '{candidato.nome}' adicionado com sucesso.")
 
 
-def apagar_candidato(numero, arquivo):
-    candidatos = carregar_db(arquivo)
-    novos_candidatos = [c for c in candidatos if c.numero != numero]
+def apagar_db(numero, arquivo, cargo):
+    objeto = carregar_db(arquivo)
+    novos_candidatos = [c for c in objeto if c.numero != numero]
 
-    if len(novos_candidatos) == len(candidatos):
-        print(f"Nenhum candidato encontrado com número {numero}.")
+    if len(novos_candidatos) == len(objeto):
+        print(f"Nenhum {cargo} encontrado com número {numero}.")
     else:
         dados = [c.to_dict() for c in novos_candidatos]
         with open(arquivo, "w", encoding="utf-8") as f:
             json.dump(dados, f, ensure_ascii=False, indent=4)
-        print(f"Candidato com número {numero} removido com sucesso.")
+        print(f"O {cargo} com número {numero} removido com sucesso.")
 
 def listar():
     print("\n--- Lista de Candidatos ---")

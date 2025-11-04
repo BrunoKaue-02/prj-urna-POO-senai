@@ -1,4 +1,4 @@
-from controller.controller_candidato import cadastrar_candidato
+from controller.controller_candidato import cadastrar_candidato, apagar_candidato
 
 
 def menu():
@@ -49,9 +49,8 @@ def menu_candidato():
     match escolha:
         case "1":
             cadastrar_candidato()
-"""
         case "2":
-            listar_candidatos()
+            print("Listando")
+            #listar_candidatos()
         case "3":
             apagar_candidato()
-"""

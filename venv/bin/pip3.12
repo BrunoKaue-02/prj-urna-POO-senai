@@ -1,4 +1,4 @@
-#!/home/bruno/Projetos/projeto-g2-POO/venv/bin/python3
+#!/home/bruno/Projetos/prj-urna-POO-senai/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
