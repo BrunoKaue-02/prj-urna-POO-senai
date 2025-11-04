@@ -1,6 +1,6 @@
 from controller.controller_candidato import cadastrar_candidato, apagar_candidato, listar_candidatos
 from controller.controller_eleitor import cadastrar_eleitor, listar_eleitores, apagar_eleitor
-from controller.controller_partido import cadastrar_partido
+from controller.controller_partido import cadastrar_partido, listar_partidos, apagar_partido
 
 
 def menu():
@@ -102,3 +102,12 @@ def cadastro_partido():
     match escolha:
         case "1":
             cadastrar_partido()
+        case "2":
+            listar_partidos()
+        case "3":
+            apagar_partido()
+        case "4":
+            menu_cadastro()
+        case _:
+            print("Opção inválida. Tente novamente.")   
+

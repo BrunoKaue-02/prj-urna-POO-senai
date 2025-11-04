@@ -13,27 +13,24 @@ def carregar_db(arquivo,classe):
         except json.JSONDecodeError:
             return []
 
-
 def salvar_db(candidato, arquivo, classe):
     candidatos = carregar_db(arquivo, classe)
     candidatos.append(candidato)
     dados = [c.to_dict() for c in candidatos]
     with open(arquivo, "w", encoding="utf-8") as f:
         json.dump(dados, f, ensure_ascii=False, indent=4)
-    print(f" Candidato '{candidato.nome}' adicionado com sucesso.")
 
 
 def apagar_db(cpf, arquivo, cargo, classe):
     objeto = carregar_db(arquivo, classe)
-    novos_candidatos = [c for c in objeto if c.cpf != cpf]
+    objetos = [c for c in objeto if c.cpf != cpf]
 
-    if len(novos_candidatos) == len(objeto):
-        print(f"Nenhum {cargo} encontrado com CPF '{cpf}'.")
+    if len(objetos) == len(objeto):
+        print(f"Valor invalido, tente novamente.")
     else:
-        dados = [c.to_dict() for c in novos_candidatos]
+        dados = [o.to_dict() for o in objetos]
         with open(arquivo, "w", encoding="utf-8") as f:
             json.dump(dados, f, ensure_ascii=False, indent=4)
-        print(f"O {cargo} com cpf {cpf} removido com sucesso.")
 
 
 def input_info(info, campo, db, classe):
