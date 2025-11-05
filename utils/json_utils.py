@@ -1,7 +1,5 @@
 import json
 import os
-from models.candidato import Candidato
-from models.eleitor import Eleitor
 
 def carregar_db(arquivo,classe):
     if not os.path.exists(arquivo):
