@@ -1,4 +1,35 @@
+# Virtual environments
 venv/
+.venv/
+
+# Environment files
 .env
-*__pycache__*
+.env.local
+.env.*
+!.env.example
+
+# Python bytecode / caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+
+# Type checkers
+.mypy_cache/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+
+# compiled python files
 *.pyc

@@ -20,3 +20,27 @@ pip --version
 
 
 pip install -r requirements.txt
+
+## Variáveis de ambiente
+
+O projeto usa um arquivo `.env` para apontar para os arquivos JSON que armazenam os dados. Existe um arquivo de exemplo `.env.example` na raiz com as variáveis necessárias.
+
+Variáveis esperadas:
+
+- `JSON_PATH_CANDIDATOS` — caminho para `data/candidatos.json`
+- `JSON_PATH_ELEITORES` — caminho para `data/eleitores.json`
+- `JSON_PATH_PARTIDO` — caminho para `data/partidos.json`
+- `JSON_PATH_VOTOS` — caminho para `data/votos.json`
+
+Como usar:
+
+1. Copie o exemplo para `.env`:
+
+```bash
+cp .env.example .env
+```
+
+2. Ajuste os caminhos se necessário e execute o projeto.
+
+Observação: o repositório ignora arquivos `.env` e outras configurações locais por segurança. Não versionamos variáveis sensíveis — copie e edite `.env.example` para criar seu `.env` local.
+

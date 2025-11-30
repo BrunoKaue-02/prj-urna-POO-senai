@@ -8,11 +8,39 @@ load_dotenv()
 db_candidatos = os.getenv("JSON_PATH_CANDIDATOS")
 
 def cadastrar_candidato():
-    nome = input_info("nome", "nome", db_candidatos, Candidato)
-    idade = input("Digite sua idade: ")
-    cpf = input_info("cpf", "cpf", db_candidatos, Candidato)  
+
+    ## Validação do nome do candidato
+    while True:
+        nome = input_info("nome", "nome", db_candidatos, Candidato)
+        if nome == "" or len(nome) < 3:
+            print("Nome inválido. O nome deve ter pelo menos 3 caracteres.")
+        else:
+            break
+    ## Validação da idade do candidato
+    while True:
+        try:
+            idade = int(input_info("idade", "idade", db_candidatos, Candidato))
+            if idade < 18:
+                print("Idade inválida. O candidato deve ter pelo menos 18 anos.")
+            else:
+                break
+        except ValueError:
+            print("Idade inválida. Por favor, insira um número inteiro.")
+
+    ## Validação do CPF do candidato
+    while True:
+        cpf = input_info("cpf", "cpf", db_candidatos, Candidato)
+        if len(cpf) != 11 or not cpf.isdigit():
+            print("CPF inválido. O CPF deve conter exatamente 11 dígitos numéricos.")
+        else:
+            break  
+        ##implementar validação do CPF existente no banco de dados
+
+    ## Implementar validação do partido
     partido = input("Digite seu partido: ")
+    ## Implementar validação do número do candidato
     numero = input_info("numero", "numero", db_candidatos, Candidato) 
+    
     cargo = input_info("cargo", "cargo", db_candidatos, Candidato)
     c = Candidato(nome, idade, cpf, partido, numero, cargo)
     salvar_db(c, db_candidatos, Candidato)

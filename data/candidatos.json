@@ -6,5 +6,21 @@
         "partido": "a",
         "numero": "a",
         "cargo": "a"
+    },
+    {
+        "nome": "Bruno",
+        "idade": "19",
+        "cpf": "11111111111",
+        "partido": "APV",
+        "numero": "34",
+        "cargo": "Presidente"
+    },
+    {
+        "nome": "aaa",
+        "idade": 21,
+        "cpf": "11111111111",
+        "partido": "2",
+        "numero": "2",
+        "cargo": "bruno"
     }
 ]
