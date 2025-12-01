@@ -2,70 +2,84 @@ import os
 import json
 from dotenv import load_dotenv
 from models.partido import Partido
-from utils.json_utils import salvar_db, input_info, carregar_db
+from utils.json_utils import salvar_db, carregar_db, verificar_input, apagar_db
 
 load_dotenv()
 
-db_partido = os.getenv("JSON_PATH_PARTIDO", "partidos.json")
+db_partido = os.getenv("JSON_PATH_PARTIDO")
 
-def verificar_db(info, campo):
-    db = carregar_db(db_partido, Partido)
-    
-    for i in db:
-        dados = i.to_dict()
-        if dados.get("numero_partido") == info:
-            print(f"Erro: {info} já cadastrado no campo '{campo}'.")
-            return True
+def listar_siglas_existentes():
+    """Retorna uma string com todas as siglas ja cadastradas."""
+    partidos = carregar_db(db_partido, Partido)
+    lista = [p.sigla for p in partidos]
+    return ", ".join(lista)
 
 def cadastrar_partido():
+    print("\n--- CADASTRO DE PARTIDO ---")
+    
+    # 1. NOME DO PARTIDO
     while True:
-        nome = input("Digite o nome do partido: ").strip() # .strip() remove espaços extras no início/fim
+        nome = input("Digite o nome do partido: ").strip()
         
-        if len(nome) < 3 or nome == "":
-            print("Nome inválido. O nome deve ter pelo menos 3 caracteres.")
-        elif verificar_db(nome, "nome_partido"):
-            print("Nome já cadastrado. Tente outro.")
+        if len(nome) < 3:
+            print("Erro: O nome deve ter pelo menos 3 caracteres.")
+            continue
+            
+        # Verifica se o nome ja existe (campo 'nome_partido' no JSON)
+        if verificar_input(nome, "nome_partido", db_partido, Partido):
+            print("Erro: Ja existe um partido cadastrado com este nome.")
         else:
             break
 
+    # 2. SIGLA (Deve ser unica)
+    while True:
+        sigla = input("Digite a sigla do partido: ").strip().upper()
+        
+        if len(sigla) < 2:
+            print("Erro: A sigla deve ter pelo menos 2 letras.")
+            continue
+            
+        if verificar_input(sigla, "sigla", db_partido, Partido):
+            print(f"Erro: A sigla '{sigla}' ja esta em uso.")
+        else:
+            break
 
-    sigla = input("Digite a sigla: ")
-    numero = input_info("numero", "numero", db_partido, Partido)
-    partido = Partido(nome, sigla, numero)
-    salvar_db(partido, db_partido, Partido)
-    print(f"Partido '{nome}' cadastrado com sucesso!")   
-    return
+    # 3. NUMERO DO PARTIDO (Deve ser unico)
+    while True:
+        numero = input("Digite o numero do partido: ").strip()
+        
+        if not numero.isdigit():
+            print("Erro: O numero deve conter apenas digitos.")
+            continue
+            
+        if verificar_input(numero, "numero_partido", db_partido, Partido):
+            print(f"Erro: O numero '{numero}' ja pertence a outro partido.")
+        else:
+            break
+
+    # Cria o objeto e salva
+    novo_partido = Partido(nome, sigla, numero)
+    salvar_db(novo_partido, db_partido, Partido)
+    
+    print(f"Sucesso: Partido '{nome}' ({sigla}) cadastrado.")
 
 def listar_partidos():
-    print("\n--- Lista de Partidos ---")
+    print("\n--- LISTA DE PARTIDOS ---")
     partidos = carregar_db(db_partido, Partido)
+    
     if not partidos:
-        print("Nenhum Partido cadastrado.")
+        print("Nenhum partido cadastrado.")
         return
+        
     for p in partidos:
-        print(f"Nome: {p.nome_partido} - Sigla: {p.sigla} - Nº {p.numero_partido}")
-    input("")
+        # Ajuste os nomes dos atributos conforme sua classe Partido
+        print(f"[{p.numero_partido}] {p.sigla} - {p.nome_partido}")
+    
+    input("\nPressione Enter para voltar...")
 
 def apagar_partido():
-    numero = input("Digite o número do partido a ser removido: ")
-    partidos = carregar_db(db_partido, Partido)
+    print("\n--- REMOVER PARTIDO ---")
+    numero = input("Digite o numero do partido a ser removido: ")
     
-    # Verifica se o número existe
-    partido_encontrado = False
-    novos_partidos = []
-    for p in partidos:
-        if p.numero_partido == numero:
-            partido_encontrado = True
-            continue
-        novos_partidos.append(p)
-    
-    if not partido_encontrado:
-        print("Número inválido, nenhum partido removido.")
-        return
-
-    # Salva novamente os dados
-    dados = [p.to_dict() for p in novos_partidos]
-    with open(db_partido, "w", encoding="utf-8") as f:
-        json.dump(dados, f, ensure_ascii=False, indent=4)
-    
-    print(f"Partido com número {numero} removido com sucesso.")
+    # Usa a funcao utilitaria para apagar pelo campo chave 'numero_partido'
+    apagar_db(numero, db_partido, "numero_partido", Partido)
