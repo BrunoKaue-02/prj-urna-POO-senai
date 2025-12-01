@@ -10,5 +10,11 @@
         "idade": 18,
         "cpf": "11111111111",
         "ja_votou": true
+    },
+    {
+        "nome": "Bruno2]",
+        "idade": 123,
+        "cpf": "22222222222",
+        "ja_votou": true
     }
 ]

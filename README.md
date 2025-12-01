@@ -21,6 +21,13 @@ pip --version
 
 pip install -r requirements.txt
 
+> Se você estiver em uma distribuição Debian/Ubuntu e o projeto usar bibliotecas gráficas (Tkinter), instale a dependência do sistema:
+
+```bash
+sudo apt-get update
+sudo apt-get install python3-tk
+```
+
 ## Variáveis de ambiente
 
 O projeto usa um arquivo `.env` para apontar para os arquivos JSON que armazenam os dados. Existe um arquivo de exemplo `.env.example` na raiz com as variáveis necessárias.

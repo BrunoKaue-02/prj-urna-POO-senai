@@ -28,5 +28,15 @@
         "numero": "2",
         "cargo": "bruno",
         "votos": 0
+    },
+    {
+        "nome": "BRuno2",
+        "idade": 1212,
+        "cpf": "22222222222",
+        "ja_votou": false,
+        "partido": "bt",
+        "numero": "12",
+        "cargo": "Top",
+        "votos": 1
     }
 ]

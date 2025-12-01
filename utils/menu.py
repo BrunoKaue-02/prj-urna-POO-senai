@@ -2,6 +2,14 @@ from controller.controller_candidato import cadastrar_candidato, apagar_candidat
 from controller.controller_eleitor import cadastrar_eleitor, listar_eleitores, apagar_eleitor
 from controller.controller_partido import cadastrar_partido, listar_partidos, apagar_partido
 from controller.controller_voto import votar
+from controller.controller_resultados import finalizar_votacao 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
+senha_admin = os.getenv("SENHA_ADMIN",)
 
 def menu():
     print("\n=== URNA ELETRÔNICA ===")
@@ -18,7 +26,13 @@ def menu():
         case "2":
             votar()
         case "3":
-           print("apagar_candidato()")
+            senha = input("Digite a senha de administrador para finalizar a votação: ")
+            if senha != senha_admin:
+                print("Senha incorreta. Acesso negado.")
+            elif senha == senha_admin:
+                finalizar_votacao()
+            else:
+                print("Senha incorreta. Acesso negado.")
         case "4":
             print("Saindo do programa...")
             return True
