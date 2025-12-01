@@ -3,24 +3,30 @@
         "nome": "Bruno",
         "idade": "a",
         "cpf": "a",
+        "ja_votou": false,
         "partido": "a",
         "numero": "a",
-        "cargo": "a"
+        "cargo": "a",
+        "votos": 0
     },
     {
         "nome": "Bruno",
         "idade": "19",
         "cpf": "11111111111",
+        "ja_votou": false,
         "partido": "APV",
         "numero": "34",
-        "cargo": "Presidente"
+        "cargo": "Presidente",
+        "votos": 3
     },
     {
         "nome": "aaa",
         "idade": 21,
         "cpf": "11111111111",
+        "ja_votou": false,
         "partido": "2",
         "numero": "2",
-        "cargo": "bruno"
+        "cargo": "bruno",
+        "votos": 0
     }
 ]

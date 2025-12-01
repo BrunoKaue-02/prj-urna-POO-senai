@@ -29,7 +29,7 @@ def cadastrar_candidato():
 
     ## Validação do CPF do candidato
     while True:
-        cpf = input_info("cpf", "cpf", db_candidatos, Candidato)
+        cpf = input_info("CPF", "cpf", db_candidatos, Candidato)
         if len(cpf) != 11 or not cpf.isdigit():
             print("CPF inválido. O CPF deve conter exatamente 11 dígitos numéricos.")
         else:

@@ -1,7 +1,7 @@
 from controller.controller_candidato import cadastrar_candidato, apagar_candidato, listar_candidatos
 from controller.controller_eleitor import cadastrar_eleitor, listar_eleitores, apagar_eleitor
 from controller.controller_partido import cadastrar_partido, listar_partidos, apagar_partido
-
+from controller.controller_voto import votar
 
 def menu():
     print("\n=== URNA ELETRÔNICA ===")
@@ -16,7 +16,7 @@ def menu():
         case "1":
             menu_cadastro()
         case "2":
-            print("listar_candidatos()")
+            votar()
         case "3":
            print("apagar_candidato()")
         case "4":

@@ -3,5 +3,15 @@
         "nome_partido": "pd",
         "sigla": "pd",
         "numero_partido": "pd"
+    },
+    {
+        "nome_partido": "aaa",
+        "sigla": "aa",
+        "numero_partido": "a"
+    },
+    {
+        "nome_partido": "aaa",
+        "sigla": "2",
+        "numero_partido": "a"
     }
 ]
